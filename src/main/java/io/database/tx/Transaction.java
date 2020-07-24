@@ -1,5 +1,7 @@
 package io.database.tx;
 
+import io.database.engine.IsolationLevel;
+
 /**
  * 事务
  *
@@ -9,17 +11,28 @@ package io.database.tx;
 public interface Transaction {
     /**
      * 获取事务ID
+     *
      * @return
      */
     long getTxId();
+
+    /**
+     * 获取隔离级别
+     *
+     * @return
+     */
+    IsolationLevel getIsolationLevel();
+
     /**
      * 获取保存点
+     *
      * @return
      */
     long getSavePoint();
 
     /**
      * 回滚到保存点
+     *
      * @param savePoint
      */
     void roleBackToSavePoint(long savePoint);
