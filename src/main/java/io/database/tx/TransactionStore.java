@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
  * @create 2020-07-24 下午12:13
  **/
 public class TransactionStore {
+
     /**
      * 同一时间开启的最大事务数字
      */
@@ -51,7 +52,7 @@ public class TransactionStore {
             newBitSet.set(txId);
             isSuccess = txIdProducer.compareAndSet(origin, newBitSet);
         }
-        Transaction transaction = new DefaultTransaction(txId, IsolationLevel.READ_COMMITTED);
+        Transaction transaction = new DefaultTransaction(txId, IsolationLevel.READ_COMMITTED,TransactionStatus.STATUS_OPEN,null);
         //设置undoLog日志手机
         undoLogs[txId] = new HashMap<>();
         transactions.set(txId, transaction);
