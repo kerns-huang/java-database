@@ -14,7 +14,7 @@ public interface Transaction {
      *
      * @return
      */
-    long getTxId();
+    int getTxId();
 
     /**
      * 获取隔离级别

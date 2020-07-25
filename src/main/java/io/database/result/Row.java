@@ -6,5 +6,8 @@ package io.database.result;
  * @author xiaohei
  * @create 2020-07-24 上午11:12
  **/
-public class Row {
+public interface Row{
+
+    Long getKey();
+
 }
