@@ -2,6 +2,8 @@ package io.database.tx;
 
 import io.database.engine.IsolationLevel;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * 默认的事务处理
  *
@@ -20,15 +22,23 @@ public class DefaultTransaction implements Transaction {
      */
     private RollbackListener rollbackListener;
     /**
+     * 事务信息保存
+     */
+    private TransactionStore transactionStore;
+    /**
      * 事务的状态
      */
     private int status;
 
-    DefaultTransaction(int txId, IsolationLevel isolationLevel,int status,RollbackListener listener) {
+    private AtomicLong  logIdProducer;
+
+    DefaultTransaction(TransactionStore transactionStore,int txId, IsolationLevel isolationLevel,int status,RollbackListener listener) {
         this.txId = txId;
         this.isolationLevel = isolationLevel;
         this.status=status;
         this.rollbackListener=listener;
+        this.transactionStore=transactionStore;
+        logIdProducer =new AtomicLong();
     }
 
     public int getTxId() {
@@ -48,8 +58,6 @@ public class DefaultTransaction implements Transaction {
     }
 
     public void commit() {
-
-
-
+        transactionStore.commit(this);
     }
 }

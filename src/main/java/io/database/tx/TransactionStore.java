@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 
 /**
- * 事务的状态保持
+ * 事务的数据状态保持
  *
  * @author xiaohei
  * @create 2020-07-24 下午12:13
@@ -52,7 +52,7 @@ public class TransactionStore {
             newBitSet.set(txId);
             isSuccess = txIdProducer.compareAndSet(origin, newBitSet);
         }
-        Transaction transaction = new DefaultTransaction(txId, IsolationLevel.READ_COMMITTED,TransactionStatus.STATUS_OPEN,null);
+        Transaction transaction = new DefaultTransaction(this,txId, IsolationLevel.READ_COMMITTED,TransactionStatus.STATUS_OPEN,null);
         //设置undoLog日志手机
         undoLogs[txId] = new HashMap<>();
         transactions.set(txId, transaction);
