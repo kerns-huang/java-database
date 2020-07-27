@@ -13,8 +13,6 @@ import java.util.Set;
 public class TransactionMap<K,V> extends AbstractMap<K,V> {
 
 
-
-
    public V putIfAbsent(K key, V value) {
         //保存undo log 日志到 transactionStore里面去
         return value;

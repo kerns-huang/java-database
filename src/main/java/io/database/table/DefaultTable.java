@@ -13,7 +13,7 @@ import java.util.List;
  * @author xiaohei
  * @create 2020-07-24 上午11:09
  **/
-public class DefaultTable {
+public class DefaultTable implements Table {
 
     private List<Index> indexList;
 
@@ -24,7 +24,7 @@ public class DefaultTable {
         //开启会话，
         try {
             for (Index index : indexList) {
-                index.addRow(row);
+                index.addRow(session,row);
             }
         } catch (Exception e) {
             //TODO 回滚会话
