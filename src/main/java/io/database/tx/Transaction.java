@@ -18,7 +18,6 @@ public interface Transaction {
 
     /**
      * 获取隔离级别
-     *
      * @return
      */
     IsolationLevel getIsolationLevel();
