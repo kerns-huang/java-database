@@ -1,10 +1,8 @@
 package io.database.index;
 
 import io.database.result.Row;
-import io.database.tx.Session;
+import io.database.session.Session;
 import io.database.tx.TransactionMap;
-
-import java.util.Map;
 
 /**
  * 主键索引
@@ -24,6 +22,7 @@ public class PrimaryIndex implements Index {
       Object older=  data.putIfAbsent(row.getKey(),row);
       if(older!=null){
           //抛出异常，不能重复添加
+          throw new IllegalStateException("数据已经存在");
       }
     }
 
@@ -31,6 +30,7 @@ public class PrimaryIndex implements Index {
        Object older=  data.remove(row.getKey());
        if(older==null){
            //TODO 抛出异常，不能删除不存在的数据，有必要吗
+           throw new IllegalStateException("不上删除不存在的数据");
        }
 
     }
@@ -41,5 +41,6 @@ public class PrimaryIndex implements Index {
 
     public void find(Session session, Long start, Long end) {
         //TODO 根据不同的隔离级别，获取镜像数据，封装成对象。
+
     }
 }

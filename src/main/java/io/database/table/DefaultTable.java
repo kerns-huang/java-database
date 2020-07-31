@@ -2,7 +2,7 @@ package io.database.table;
 
 import io.database.index.Index;
 import io.database.result.Row;
-import io.database.tx.Session;
+import io.database.session.Session;
 import io.database.tx.Transaction;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package io.database.index;
 
 import io.database.result.Row;
-import io.database.tx.Session;
+import io.database.session.Session;
 
 public interface Index {
     /**
