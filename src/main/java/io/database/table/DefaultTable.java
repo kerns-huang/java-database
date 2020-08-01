@@ -31,4 +31,9 @@ public class DefaultTable implements Table {
             transaction.roleBackToSavePoint(savePointId);
         }
     }
+
+    @Override
+    public String getTableName() {
+        return null;
+    }
 }
